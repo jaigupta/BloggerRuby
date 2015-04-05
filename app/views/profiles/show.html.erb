@@ -1,0 +1,11 @@
+<hr/>
+<% if @profile.user_id == current_user.id %>
+<%=  link_to('Edit', edit_profile_path(@profile)) %> <br/>
+<% end %>
+<div>
+First name: <%= @profile.first_name %> <br>
+Last name: <%= @profile.last_name %><br>
+Date of birth: <%= @profile.date_of_birth %> <br>
+</div>
+
+<%= link_to 'Back', profiles_path %>
