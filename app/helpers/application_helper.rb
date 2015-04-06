@@ -4,7 +4,8 @@ module ApplicationHelper
     if profile
       profile
     else
-      profile = Profile.new(first_name: :Guest, last_name: "", user_id: current_user.id)
+      profile = Profile.new(
+        first_name: "Anonymous", last_name: "", user_id: current_user.id)
       profile.save
       profile
     end

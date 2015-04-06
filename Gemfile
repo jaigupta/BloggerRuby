@@ -37,6 +37,8 @@ gem 'rails_layout'
 # Bootstrap sass
 gem 'bootstrap-sass'
 
+gem 'seed_dump'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

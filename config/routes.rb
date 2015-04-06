@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_post_likes
+
   resources :posts
 
   resources :comments
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   get 'home/home2'
   get 'home/getbug'
   get 'painter/index'
+  get 'post/like/:id' => 'posts#like'
+  get 'post/unlike/:id' => 'posts#unlike'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

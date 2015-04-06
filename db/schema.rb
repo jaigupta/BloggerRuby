@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405062756) do
+ActiveRecord::Schema.define(version: 20150405075941) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "author_name"
+    t.string   "details"
+    t.integer  "post_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -24,9 +27,10 @@ ActiveRecord::Schema.define(version: 20150405062756) do
     t.string   "details"
     t.string   "author"
     t.string   "author_details"
+    t.integer  "likes_count",    default: 0
     t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -37,6 +41,15 @@ ActiveRecord::Schema.define(version: 20150405062756) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "user_post_likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_post_likes", ["user_id", "post_id"], name: "index_user_post_likes_on_user_id_and_post_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

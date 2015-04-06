@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :unlike]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :like, :unlike]
   # GET /posts
   # GET /posts.json
   def index
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    @post.user = current_user
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -58,6 +58,29 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def like
+    user_post_like = UserPostLike.new :user_id=>current_user.id, :post_id=>@post.id
+    begin
+      user_post_like.save
+      @post.likes_count = @post.likes_count + 1
+      @post.save
+      render text: user_post_like
+    rescue
+      render text: "Error liking post. Already liked?"
+    end
+  end
+
+  def unlike
+    like = UserPostLike.where(user_id: current_user.id, post_id: @post.id).first
+    if like && like.destroy
+      @post.likes_count = @post.likes_count - 1
+      @post.save
+      render text: "unliked post"
+    else
+      render text: "like does not exist for post"
     end
   end
 

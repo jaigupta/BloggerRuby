@@ -1,0 +1,9 @@
+To dump data to the seed file from the current database, use
+$ rake db:seed:dump
+
+This will dump the data to the file db/seeds.rb
+
+To reinitialize the db from seeds file, use:
+$ rake db:drop db:mirate db:seed
+
+To see the dump on rails console, use SeedDump class. More details at (https://github.com/rroblak/seed_dump)

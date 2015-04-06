@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :details
       t.string :author
       t.string :author_details
+      t.integer :likes_count, :default => 0
       t.belongs_to :user
 
       t.timestamps null: false
