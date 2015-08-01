@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405075941) do
+ActiveRecord::Schema.define(version: 20150801142635) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "author_name"
@@ -42,6 +42,22 @@ ActiveRecord::Schema.define(version: 20150405075941) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "todo_groups", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "assignee_id"
+    t.integer  "todo_group_id"
+    t.string   "data"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "user_post_likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -49,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150405075941) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "user_post_likes", ["post_id"], name: "index_user_post_likes_on_post_id"
   add_index "user_post_likes", ["user_id", "post_id"], name: "index_user_post_likes_on_user_id_and_post_id", unique: true
 
   create_table "users", force: :cascade do |t|

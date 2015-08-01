@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :todos
+
+  resources :todo_groups
+
   resources :user_post_likes
 
   resources :posts
@@ -8,13 +12,16 @@ Rails.application.routes.draw do
   resources :profiles
 
   devise_for :users
-  get 'home/killer'
-  get 'home/home2'
+
+  get '/' => 'home#index'
+  get 'home' => 'home#index'
   get 'home/getbug'
   get 'painter/index'
   get 'post/like/:id' => 'posts#like'
   get 'post/unlike/:id' => 'posts#unlike'
 
+  # Add a few routes for our teacher contoller. map path to functions
+  get 'teacher/response_with_redirect' => 'teacher#response_with_redirect'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
