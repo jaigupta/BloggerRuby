@@ -6,9 +6,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require angular.min
 
-# List down all the required coffee scripts. here is user for example
-//= require user 
+# initalize the sidebar using jquery
+$("#menu-toggle").click((e) ->
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    );
 
 angular.module("myapp", [])
     .controller("HomeController", ($scope) ->

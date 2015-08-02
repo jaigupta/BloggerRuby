@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'painter/index'
   get 'post/like/:id' => 'posts#like'
   get 'post/unlike/:id' => 'posts#unlike'
+  get 'agile' => 'todo_dasherboard#index'
 
   # Add a few routes for our teacher contoller. map path to functions
   get 'teacher/response_with_redirect' => 'teacher#response_with_redirect'

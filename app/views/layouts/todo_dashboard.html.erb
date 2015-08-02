@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webit</title>
+  <title>Agile</title>
+
   <body ng-app="myapp">
 
   <!-- The navigation bar for boostrap -->
@@ -48,7 +49,7 @@
   </nav>
 
 
-  <div class='container'>
+  <div>
     <!-- Added during devise setup -->
     <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
@@ -58,11 +59,11 @@
     <% end %>
     <!-- End of Added during devise setup -->
 
-    <div ng-controller="HomeController" >
+    <div id="wrapper" ng-controller="HomeController" >
       <%= yield %>
     </div>
-  </body>
-  <%= stylesheet_link_tag    'home', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'todo_dashboard', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'todo_dashboard', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  </body>
 </html>
